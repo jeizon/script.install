@@ -10,12 +10,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "precise32"
+   config.vm.box = "precise32"
+  #config.vm.box = "precise64"
 
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
-  # config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+   config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+   #config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -41,9 +43,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder "D:/Projetos", "/home/vagrant/projeto"
+  config.vm.synced_folder "D:/", "/home/vagrant/projetos/"
   
-  config.vm.provision :shell, :path => "CreateServer_forVagrant.sh"
+  config.vm.provision :shell, :path => "install_vagrant.sh"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -54,7 +56,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #   vb.gui = true
   #
   #   # Use VBoxManage to customize the VM. For example to change memory:
-     vb.customize ["modifyvm", :id, "--memory", "1024"]
+     vb.customize ["modifyvm", :id, "--memory", "2048"]
+	 vb.customize ["modifyvm", :id, "--ioapic", "on"]
+	 vb.customize ["modifyvm", :id, "--cpus", "2"]
+	 vb.customize ["modifyvm", :id, "--rtcuseutc", "on"]
    end
   #
   # View the documentation for the provider you're using for more
