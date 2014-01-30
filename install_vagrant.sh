@@ -43,6 +43,12 @@ echo "########################"
 echo "#  Criando database    #"
 echo "########################"
 echo ""
+
+mysql -uroot -p$mysql_pass -e "SET GLOBAL max_allowed_packet=128*1024*1024"
+mysql -uroot -p$mysql_pass -e "SET GLOBAL key_buffer_size=1*1024*1024*1024"
+mysql -uroot -p$mysql_pass -e "SET GLOBAL sort_buffer_size=128*1024*1024"
+mysql -uroot -p$mysql_pass -e "SET GLOBAL read_buffer_size=128*1024*1024"
+
 #if mysql -uroot -p$mysql_pass -e "create database "$DBNAME"" -eq 1; then
 mysql -uroot -p$mysql_pass -e "create database "$DBNAME";"
 mysql -uroot -p$mysql_pass $DBNAME < /home/vagrant/projetos/Itelios.GilbertGaillard.Site/$DBNAME.mysql
